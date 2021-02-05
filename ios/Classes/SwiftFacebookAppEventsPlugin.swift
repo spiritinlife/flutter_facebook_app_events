@@ -11,6 +11,9 @@ public class SwiftFacebookAppEventsPlugin: NSObject, FlutterPlugin {
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
+        case "setAdvertiserTrackingEnabled":
+            setAdvertiserTrackingEnabled(call, result: result)
+            break
         case "clearUserData":
             handleClearUserData(call, result: result)
             break
@@ -41,6 +44,9 @@ public class SwiftFacebookAppEventsPlugin: NSObject, FlutterPlugin {
         case "setAutoLogAppEventsEnabled":
             handleSetAutoLogAppEventsEnabled(call, result: result)
             break
+        case "setAutoLogAppEventsEnabled":
+            handleSetAutoLogAppEventsEnabled(call, result: result)
+            break
         case "setDataProcessingOptions":
             handleSetDataProcessingOptions(call, result: result)
             break
@@ -53,6 +59,13 @@ public class SwiftFacebookAppEventsPlugin: NSObject, FlutterPlugin {
         default:
             result(FlutterMethodNotImplemented)
         }
+    }
+
+    private func setAdvertiserTrackingEnabled(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        let arguments = call.arguments as? [String: Any] ?? [String: Any]()
+        let advertiserTrackingEnabled = arguments["advertiser_tracking_enabled"] as! Bool
+        Settings.setAdvertiserTrackingEnabled(advertiserTrackingEnabled)
+        result(nil)
     }
 
     private func handleClearUserData(_ call: FlutterMethodCall, result: @escaping FlutterResult) {

@@ -54,8 +54,13 @@ class FacebookAppEventsPlugin: FlutterPlugin, MethodCallHandler {
       "setDataProcessingOptions" -> handleSetDataProcessingOptions(call, result)
       "getAnonymousId" -> handleGetAnonymousId(call, result)
       "logPurchase" -> handlePurchased(call, result)
+      "setAdvertiserTrackingEnabled" -> doNothing(call, result)
       else -> result.notImplemented()
     }
+  }
+
+   private fun doNothing(call: MethodCall, result: Result) {
+    result.success(null)
   }
 
   private fun handleClearUserData(call: MethodCall, result: Result) {

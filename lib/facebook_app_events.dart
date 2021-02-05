@@ -63,6 +63,17 @@ class FacebookAppEvents {
     return _channel.invokeMethod<String>('getAnonymousId');
   }
 
+  static Future<void> setAdvertiserTrackingEnabled({
+    @required bool advertiserTrackingEnabled,
+  }) {
+    final args = <String, dynamic>{
+      'advertiser_tracking_enabled': advertiserTrackingEnabled,
+    };
+
+    return _channel.invokeMethod<void>(
+        'setAdvertiserTrackingEnabled', args);
+  }
+
   /// Log an app event with the specified [name] and the supplied [parameters] value.
   Future<void> logEvent({
     @required String name,
